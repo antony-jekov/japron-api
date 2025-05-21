@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: japron
+
+  transaction:
+    default-timeout: 1
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/japron_db
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: nosecretsamongdevs
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    clean-disabled: true
+
+  threads:
+    virtual:
+      enabled: true
+
+  sql:
+    init:
+      mode: always
+
+  modulith:
+    events:
+      republish-outstanding-events-on-restart: true
+      externalization:
+        enabled: true
+      jdbc:
+        schema-initialization:
+          enabled: true
+    moments:
+      enable-time-machine: true
+      granularity: hours
+
+  docker:
+    compose:
+      lifecycle-management: start_only
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
