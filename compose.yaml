@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: 'postgres:17-alpine'
+    container_name: db
+    environment:
+      - 'POSTGRES_DB=japron_db'
+      - 'POSTGRES_USERNAME=postgres'
+      - 'POSTGRES_PASSWORD=nosecretsamongdevs'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'japron-data:/var/lib/postgresql/data'
+
+volumes:
+  japron-data:
